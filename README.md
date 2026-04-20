@@ -52,8 +52,8 @@ rkowdeed_recommendation_enginers/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/rkowdeed/rkowdeed_recommendation_enginers.git
-   cd rkowdeed_recommendation_enginers
+   git clone https://github.com/rkowdeed/software_upgrade_decommission_recommendation_engine.git
+   cd software_upgrade_decommission_recommendation_engine
    ```
 
 2. **Install dependencies:**
