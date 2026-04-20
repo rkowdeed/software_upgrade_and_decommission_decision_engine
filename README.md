@@ -30,7 +30,7 @@ This project analyzes software assets and dependencies to identify which version
 ## Project Structure
 
 ```
-rkowdeed_recommendation_enginers/
+software_upgrade_and_decommission_decision_engine/
 ├── README.md                                    # This file
 ├── run_recommendations_with_pareto_analysis.ipynb  # Main analysis notebook
 ├── software_assets_data.csv                    # Input data file
@@ -52,8 +52,8 @@ rkowdeed_recommendation_enginers/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/rkowdeed/software_upgrade_decommission_recommendation_engine.git
-   cd software_upgrade_decommission_recommendation_engine
+   git clone https://github.com/rkowdeed/software_upgrade_and_decommission_decision_engine.git
+   cd software_upgrade_and_decommission_decision_engine
    ```
 
 2. **Install dependencies:**
