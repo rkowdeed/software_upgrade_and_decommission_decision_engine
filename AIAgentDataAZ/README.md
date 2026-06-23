@@ -1,0 +1,69 @@
+# AIAGENTDATAAZ
+
+This project implements a simple local data ingestion pipeline for semiconductor operations using:
+- local mock S3 storage (`mock_s3_bucket/`)
+- local SQLite database (`data/semiconductor.db`)
+- AI-style agents: `ExplorerAgent`, `CleanserAgent`, and `LoaderAgent`
+
+## How it works
+
+1. `ExplorerAgent` scans the mock S3 bucket for files.
+2. `CleanserAgent` validates file contents and checks metadata.
+3. `LoaderAgent` writes validated records into SQLite tables.
+4. The pipeline detects new or updated files by hash and processes them.
+
+## Run
+
+```powershell
+python main.py
+```
+
+Then add or update files in `mock_s3_bucket/`.
+
+## Data model
+
+- `file_ingest`: tracks ingest history and validation status.
+- `semiconductor_operation`: stores semiconductor operation rows, including a nested JSON `metadata` field.
+
+## Metadata schema
+
+The project uses `metadata_field_types.txt` to define expected nested metadata fields and types.
+Supported types include:
+- `integer`
+- `decimal`
+- `char`
+- `boolean`
+
+Example valid metadata JSON:
+
+```json
+{
+  "execution_time_ms": 120,
+  "process_specification": {
+    "name": "etch-A",
+    "version": "1.0"
+  },
+  "equipment_conditions": {
+    "temperature": {
+      "setpoint": 20,
+      "unit": "C"
+    },
+    "pressure": "1atm",
+    "active": true
+  }
+}
+```
+
+The sample valid CSV includes metadata like `execution_time_ms`, `process_specification.name`, `process_specification.version`, and `equipment_conditions.active`.
+Invalid rows are used to test type validation, such as invalid numeric values and malformed boolean metadata.
+
+## Sample data
+
+The repository seeds two files automatically:
+- `semiconductor_operations_20260623.csv` (valid)
+- `semiconductor_operations_20260624_invalid.csv` (invalid)
+
+## Notes
+- No AWS dependencies are required.
+- The mock S3 bucket is just a local folder with file metadata.
+- SQLite is used as the target database.
